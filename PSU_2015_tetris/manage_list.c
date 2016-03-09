@@ -5,11 +5,11 @@
 ** Login   <jabbar_y@epitech.net>
 **
 ** Started on  Tue Mar  1 23:37:09 2016 Jabbari Yassir
-** Last update Sun Mar  6 18:28:05 2016 Loic Lopez
+** Last update Wed Mar  9 17:03:41 2016 Loic Lopez
 */
 
 #include "include/tetris.h"
-
+#include <string.h>
 char    **get_form(char *buffer, int height, int width)
 {
   char  **tab;
@@ -30,7 +30,7 @@ char    **get_form(char *buffer, int height, int width)
   while (j < height)
     {
       i = 0;
-      while (i <= width)
+      while (i < width + 1)
 	tab[j][i++] = buffer[k++];
       j++;
     }
@@ -79,10 +79,11 @@ t_list          *add(t_list *list, t_tmp *tmp)
 t_tmp		*contribute_complete(t_tmp *tmp)
 {
   tmp->size = size_of_file(tmp->fd);
-  if ((tmp->buffer = malloc(sizeof(char) * tmp->size)) == NULL || tmp->size == 0)
+  if ((tmp->buffer = malloc(sizeof(char) * tmp->size + 1)) == NULL || tmp->size == 0)
     return (NULL);
   if ((tmp->rd = read(tmp->fd, tmp->buffer, tmp->size)) == -1 || tmp->rd == 0)
     return (NULL);
+  tmp->buffer[tmp->rd] = '\0';
   tmp->color_tmp = my_getnbr(&tmp->buffer[4]);
   tmp->width_tmp = my_getnbr(&tmp->buffer[0]);
   tmp->height_tmp = my_getnbr(&tmp->buffer[2]);
@@ -104,7 +105,7 @@ t_list		*complete_list(t_list *list)
 	{
 	  if ((tmp.fd = open(entry->d_name, O_RDONLY)) == -1)
 	    return (NULL);
-	  tmp.name_tmp = entry->d_name;
+	  tmp.name_tmp = my_strdup(entry->d_name);
 	  contribute_complete(&tmp);
 	  tmp.tetrimino_tmp = get_form(tmp.buffer, tmp.height_tmp, tmp.width_tmp);
 	  list = add(list, &tmp);

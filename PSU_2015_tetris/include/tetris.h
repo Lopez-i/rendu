@@ -5,7 +5,7 @@
 ** Login   <jabbar_y@epitech.net>
 **
 ** Started on  Thu Feb 25 15:10:48 2016 Jabbari Yassir
-** Last update Tue Mar  8 10:26:10 2016 Jabbari Yassir
+** Last update Tue Mar  8 22:32:17 2016 Jabbari Yassir
 */
 
 #include <stdlib.h>
@@ -65,5 +65,7 @@ int			size_of_file(const int fd);
 int			my_printf(const char *, ...);
 void			print_tetrimino(t_list *);
 void			show(t_list *);
+char			*my_strdup(char *src);
+char			*my_strcpy(char *, char *);
 
 #endif /* _TETRIS_H_ */

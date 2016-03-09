@@ -5,7 +5,7 @@
 ** Login   <lopez_i@epitech.net>
 **
 ** Started on  Tue Mar  1 22:39:14 2016 Loic Lopez
-** Last update Tue Mar  8 10:50:37 2016 Loic Lopez
+** Last update Wed Mar  2 18:58:59 2016 Loic Lopez
 */
 
 #include "../include/tetris.h"
@@ -72,31 +72,14 @@ void	help(char **av)
     }
 }
 
-void	print_debug(char **av, int i, int n)
-{
-   while (av[i])
-    {
-      n = 0;
-      while (av[i][n] != my_strcmp(av[i], "–d"))
-	{
-	  if (av[i][n] == '-' && av[i][n + 1] == 'd')
-	    my_printf("*** DEBUG MODE ***\n");
-	  else
-	    return ;
-	  n++;
-	}
-      i++;
-    }
-}
-
-void	kd(char **av, int i, int n)
+void	debug(char **av, int i, int n)
 {
   while (av[i])
     {
-      while (av[i][n] != my_strcmp(av[i], "–kd"))
+      while (av[i][n] != my_strcmp(av[i], "–kd'x'"))
 	{
 	  if (av[i][n] == '-' && av[i][n + 1] == 'k' && av[i][n + 2] == 'd')
-	    my_printf("Key Drop : x\n");
+	    my_printf("*** DEBUG MODE ***\n");
 	  else
 	    return ;
 	  n++;
@@ -109,15 +92,13 @@ int     main(int ac, char **av)
 {
   int	i;
   int	n;
-
   if (ac < 2)
-    my_putstr("Le jeu est en PLS\n");
-  if (ac > 2)
+    my_putstr("Need one argument\n");
+  else if (ac > 2)
     {
       i = 1;
       n = 0;
-      kd(av, i, n);
-      print_debug(av, i, n);
+      debug(av, i, n);
     }
   else if (ac == 2)
     help(av);

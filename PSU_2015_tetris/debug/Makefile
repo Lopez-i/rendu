@@ -1,14 +1,14 @@
 ##
-## Makefile for Makefile in /home/jabbar_y/rendu/PSU_2015_tetris
+## Makefile<test> for Makefile in /home/lopez_i/traitements/PSU_2015_minishell1
 ## 
-## Made by Jabbari Yassir
-## Login   <jabbar_y@epitech.net>
+## Made by Loic Lopez
+## Login   <lopez_i@epitech.net>
 ## 
-## Started on  Fri Mar  4 13:49:36 2016 Jabbari Yassir
-## Last update Mon Mar  7 21:11:24 2016 Loic Lopez
+## Started on  Thu Jan 21 19:22:39 2016 Loic Lopez
+## Last update Tue Mar  1 23:37:40 2016 Loic Lopez
 ##
 
-CC	=  gcc -g
+CC	=  gcc
 
 NAME    =  tetris
 
@@ -19,36 +19,31 @@ GREEN	=  "\033[0;32m"
 TEAL	=  "\033[1;36m"
 RED	=  "\033[5;31m"
 
-CFLAGS += -g -Wextra -Wall -Werror
-CFLAGS += -pedantic -ansi
-CFLAGS += -I./include/
+CFLAGS += -g # -Wextra -Wall -Werror
+# CFLAGS += -pedantic -ansi
+CFLAGS += -I../include
 CFLAGS += -lncurses
-CFLAGS += -lmy -L./../lib/
-CFLAGS += -D_BSD_SOURCE
-CFLAGS += -D_XOPEN_SOURCE
+CFLAGS += -lmy -L../lib
 
-SRC	=  debug.c			\
-	   manage_list.c		\
-	   size.c			\
+SRC	= debug.c
 
 OBJ	= $(SRC:.c=.o)
 
-all: lib_make  $(NAME)
+all:	  $(NAME)
 
-$(NAME):  $(OBJ)
-	  @$(CC) -o $(NAME) $(OBJ) $(CFLAGS) && \
+lib_make:
+	  @make -s -C ../lib/
+lib_clean:
+	  @make clean -s -C ../lib/
+lib_fclean:
+	  @make fclean -s -C ../lib/
+lib_re:
+	  @make re -s -C ../lib/
+
+$(NAME):  $(OBJ) lib_make
+	  @$(CC) $(OBJ) $ $(CFLAGS) -o $(NAME) && \
 	  $(ECHO) $(GREEN) "[OK]" $(TEAL) $(OBJ) $(DEFAULT) || \
 	  paplay sounds/je_code.ogg
-
-lib_make: 
-	  @make --no-print-directory -C ../lib/
-lib_clean:
-	  @make clean --no-print-directory -C ../lib/
-lib_fclean:
-	  @make fclean --no-print-directory -C ../lib/
-lib_re:
-	  @make re --no-print-directory -C ../lib/
-
 clean:	  lib_clean
 	  @rm -f $(OBJ) && \
 	  $(ECHO) $(GREEN) "[OK] remove" $(TEAL) $(OBJ) $(DEFAULT) || \
@@ -59,7 +54,7 @@ fclean:	  clean lib_fclean
 	  $(ECHO) $(GREEN) "[OK] remove" $(TEAL) $(NAME) $(DEFAULT) || \
 	  $(ECHO) $(RED) "[ERROR] doesn't exist" $(TEAL) $(OBJ) $(DEFAULT)
 
-re:	  fclean all
+re:	  fclean all lib_re
 
 .c.o:
 	 @$(CC) $(CFLAGS) -c $< -o $@ && \

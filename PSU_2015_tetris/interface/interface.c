@@ -5,12 +5,12 @@
 ** Login   <jabbar_y@epitech.net>
 **
 ** Started on  Fri Feb 26 15:57:09 2016 Jabbari Yassir
-** Last update Tue Mar  8 10:27:47 2016 Jabbari Yassir
+** Last update Tue Mar  8 15:12:57 2016 Jabbari Yassir
 */
 
 #include "../include/tetris.h"
 
-void            print_logo(t_list *list)
+void            print_logo()
 {
   start_color();
   init_color(0, 0, 0, 0);
@@ -36,10 +36,10 @@ void            print_logo(t_list *list)
   attron(COLOR_PAIR(COLOR_GREEN));
   mvprintw(1, 13, "***");
   mvprintw(2, 13, "* *");
-  print_logo_bis(list);
+  print_logo_bis();
 }
 
-void		print_logo_bis(t_list *list)
+void		print_logo_bis()
 {
   mvprintw(3, 13, " **");
   mvprintw(4, 13, "* *");
@@ -57,10 +57,10 @@ void		print_logo_bis(t_list *list)
   mvprintw(3, 19, "***");
   mvprintw(4, 19, "  *");
   mvprintw(5, 19, "***");
-  print_game_board(list);
+  print_game_board();
 }
 
-void		print_game_board(t_list *list)
+void		print_game_board()
 {
   int		i;
 
@@ -86,10 +86,10 @@ void		print_game_board(t_list *list)
     mvprintw(i++, 1, "|                  |");
   mvprintw(i, 1, "\\------------------/");
   mvprintw(10, 3, "High Score");
-  print_game_board_bis(list);
+  print_game_board_bis();
 }
 
-void		print_game_board_bis(t_list *list)
+void		print_game_board_bis()
 {
   mvprintw(11, 3, "Score");
   mvprintw(13, 3, "Lines");
@@ -99,5 +99,4 @@ void		print_game_board_bis(t_list *list)
   mvprintw(20, 38, "Develloped with <3");
   mvprintw(21, 38, "lopez_i, (Le Mafieux)");
   mvprintw(22, 38, "jabbar_y, (L'Esclavagiste)");
-  print_tetrimino(list);
 }

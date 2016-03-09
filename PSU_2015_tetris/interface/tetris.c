@@ -1,4 +1,3 @@
-
 /*
 ** tetris.c for tetris in /home/jabbar_y/rendu/PSU_2015_tetris
 **
@@ -6,49 +5,56 @@
 ** Login   <jabbar_y@epitech.net>
 **
 ** Started on  Thu Feb 25 14:57:02 2016 Jabbari Yassir
-** Last update Tue Mar  8 12:27:27 2016 Jabbari Yassir
+** Last update Wed Mar  9 19:22:39 2016 Jabbari Yassir
 */
 
 #include "../include/tetris.h"
+
+void		print_tetrimino(t_list *list)
+{
+  int		i;
+  int		y;
+  int		x;
+  WINDOW	*win;
+
+  i = 0;
+  y = 0;
+  x = 3;
+  win = subwin(stdscr, 20, 10, 2, 24);
+  while (list->first != 1)
+    list = list->next;
+  list = list->next;
+  mvprintw(50, 0, list->data->name_list);
+  mvwprintw(win, y++, x, list->data->tetrimino_list[i++]);
+  mvwprintw(win, y, x, list->data->tetrimino_list[i++]);
+  while (y != 19)
+    {
+      i = 0;
+      usleep(50000);
+      refresh();
+      mvwprintw(win, y, x, " ");
+      mvwprintw(win, y++, x, list->data->tetrimino_list[i++]);
+      mvwprintw(win, y, x, list->data->tetrimino_list[i++]);
+    }
+}
 
 int		tetris(t_list *list)
 {
   int		key;
 
-  initscr();
+  newterm(NULL, stderr, stdin);
   noecho();
-  keypad(stdscr, TRUE);
   curs_set(0);
+  nodelay(stdscr, TRUE);
+  keypad(stdscr, TRUE);
   while (key != 'q')
     {
       clear();
-      /* print_logo(list); */
+      print_logo();
       print_tetrimino(list);
-      key = getch();
       refresh();
+      key = getch();
     }
   endwin();
   return (0);
-}
-
-void		print_tetrimino(t_list *list)
-{
-  /* int		i; */
-  /* int		j; */
-  /* int		x; */
-  /* int		y; */
-
-  /* y = 2; */
-  /* x = 28; */
-  /* j = 0; */
-  while (list->first != 1)
-    list = list->next;
-  mvaddstr(3, 20, list->data->name_list);
-  /* while (j < list->data->height_list) */
-  /*   { */
-  /*     i = 0; */
-  /*     while (i <= list->data->width_list) */
-  /* 	mvprintw(y, x++, "%c", list->data->tetrimino_list[j][i++]); */
-  /*     j++; */
-  /*   } */
 }

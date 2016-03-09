@@ -5,7 +5,7 @@ z** my.h for my in /home/lopez_i/rendu/Piscine_C_J09/include
 ** Login   <lopez_i@epitech.net>
 **
 ** Started on  Fri Oct  9 12:06:14 2015 loic lopez
-** Last update Wed Mar  2 01:25:22 2016 Loic Lopez
+** Last update Tue Mar  8 19:08:04 2016 Loic Lopez
 */
 
 #ifndef MY_H_
@@ -36,5 +36,5 @@ int	call_string(va_list list);
 int	call_adress(va_list list);
 int	call_binary(va_list list);
 int	call_noprintable(va_list list);
-
+char	*my_strdup(char *);
 #endif

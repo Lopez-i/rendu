@@ -5,7 +5,7 @@
 ## Login   <lopez_i@epitech.net>
 ## 
 ## Started on  Thu Jan 21 19:22:39 2016 Loic Lopez
-## Last update Wed Mar  2 01:25:56 2016 Loic Lopez
+## Last update Tue Mar  8 19:07:47 2016 Loic Lopez
 ##
 
 CC	=  gcc
@@ -34,6 +34,7 @@ SRC	=  my_printf_p.c	\
 	   my_put_nbr.c		\
 	   my_strlen.c		\
 	   my_strcpy.c		\
+	   my_strdup.c		\
 	   my_putstr_noprintable.c\
 	   my_getnbr.c		\
 	   my_str_to_wordtab.c	\
